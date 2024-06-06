@@ -2,7 +2,12 @@
 async function main()
 {
     works();
-    filters();
+    await filters();
+
+    const btn = document.getElementsByClassName("category")
+    for (let index = 0; index < btn.length; index++) {
+        btn[index].addEventListener("click", handleFilters);
+    }
 }
 
 async function _request(method, url)
@@ -76,11 +81,55 @@ async function filters()
     cats.forEach((cat) => {
         const p = document.createElement('p')
         p.className = "category"
-        p.id = cat.id;
+        p.id = `cat_${cat.id}`;
         p.innerText = cat.name;
 
         categories.appendChild(p);
     });
+}
+
+async function handleFilters(e)
+{
+
+    var category = e.target.id.split("_")[1];
+    //We get works
+    const works = await _request("GET", "works");
+
+    //We get the element gallery
+    const gallery = document.getElementById("gallery");
+    gallery.innerHTML = "";
+
+    //We loop throught works
+    works.forEach((work) => {
+        //We create an element figure
+        const figure = document.createElement('figure')
+        //we give this element an id
+        figure.id = work.id
+        //We create an element img
+        const img = document.createElement('img')
+        //we give this ele a src
+        img.src = work.imageUrl;
+        //and an alt
+        img.alt = work.title;
+        //we create an element caption
+        const figcap = document.createElement("figcaption")
+        //we inner text inside of it
+        figcap.innerText = work.title
+    
+        //we add img to figure
+        figure.appendChild(img)
+        //we add the caption to figure
+        figure.appendChild(figcap);
+    
+        //we child the final figure with data to gallery
+        //If category equals all we display all
+        if (category === "all")
+            gallery.appendChild(figure); 
+
+        //overwise we just display the category id
+        if (work.category.id.toString() === category)
+            gallery.appendChild(figure);
+    })
 }
 
 // We call the main function
