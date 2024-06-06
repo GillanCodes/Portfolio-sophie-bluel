@@ -2,6 +2,7 @@
 async function main()
 {
     works();
+    filters();
 }
 
 async function _request(method, url)
@@ -61,6 +62,25 @@ async function works()
         gallery.appendChild(figure);
     })
 
+}
+
+async function filters()
+{
+    //We get works
+    const cats = await _request("GET", "categories");
+
+    //We get categories element
+    const categories = document.getElementById('categories');
+
+    //We loop throught works
+    cats.forEach((cat) => {
+        const p = document.createElement('p')
+        p.className = "category"
+        p.id = cat.id;
+        p.innerText = cat.name;
+
+        categories.appendChild(p);
+    });
 }
 
 // We call the main function
