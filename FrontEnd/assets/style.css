@@ -127,7 +127,6 @@ li:hover {
 }
 #portfolio h2 {
 	text-align: center;
-	margin-bottom: 1em;
 }
 .gallery {
 	width: 100%;
@@ -182,6 +181,46 @@ input[type="submit"]{
 	width: 180px;
 	text-align: center;
 	border-radius: 60px ;
+}
+
+.title
+{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 60px;
+	position: relative;
+}
+
+.title h2
+{
+	height: 60px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-grow: 1;
+}
+
+.title .edit
+{
+	
+	position: absolute;
+	left: 700px;
+	display: flex;
+	width: 100px;
+	justify-content: center;
+	align-items: center;
+}
+
+.title .edit:hover
+{
+	width: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	text-decoration: underline;
+	cursor: pointer;
 }
 
 footer nav ul {
