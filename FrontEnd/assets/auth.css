@@ -84,3 +84,8 @@
 {
     color: rgba(61, 61, 61, 1);
 }
+
+#login-btn
+{
+    font-weight: bold;
+}

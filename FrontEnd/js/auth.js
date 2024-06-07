@@ -32,6 +32,9 @@ async function login(e)
 
     //We store the token
     window.localStorage.setItem('Bearer', token)
+
+    //Login is done we go back to home page
+    window.location = "./";
 }
 
 // Utils: make a request
