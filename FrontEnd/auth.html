@@ -10,7 +10,7 @@
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
 
-    <script src="./js/auth.js"></script>
+    <script src="./js/auth.js" defer></script>
 </head>
 <body>
     <header>
@@ -29,14 +29,14 @@
         <section id="auth">
              <h2>Log In</h2>
 
-             <form>
+             <form id="login">
                 <div class="field">
                     <label for="email"><b>E-Mail</b></label>
                     <input type="text" name="email" required>
                 </div>
                 <div class="field">
                     <label for="psw"><b>Mot de passe</b></label>
-                    <input type="text" name="psw" required>
+                    <input type="password" name="psw" required>
                 </div>
                 <div class="field" id="submit-field">
                     <button type="submit">Se connecter</button>

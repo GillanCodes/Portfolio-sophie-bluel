@@ -3,6 +3,7 @@ async function main()
 {
     works();
     await filters();
+    console.log(window.localStorage.getItem('Bearer'))
 
     const btn = document.getElementsByClassName("category")
     for (let index = 0; index < btn.length; index++) {
@@ -25,7 +26,18 @@ async function _request(method, url)
 
     //Exec Request with headers
     var request = await fetch(`http://127.0.0.1:5678/api/${url}`, {
-        method: method
+        method: method,
+        mode: "cors",
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: "same-origin", // include, *same-origin, omit
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${window.localStorage.getItem('Bearer')}` 
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        redirect: "follow", // manual, *follow, error
+        referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+        body: JSON.stringify(data),
     });
     //Translate Resquest to json
     var data = await request.json();
