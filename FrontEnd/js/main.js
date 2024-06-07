@@ -10,6 +10,7 @@ async function main()
     }
 }
 
+// Utils: make a request
 async function _request(method, url)
 {
     //If url or method is empty
@@ -33,6 +34,7 @@ async function _request(method, url)
     return data;
 }
 
+// Display works
 async function works()
 {
     //We get works
@@ -69,6 +71,7 @@ async function works()
 
 }
 
+//Displayer filter
 async function filters()
 {
     //We get works
@@ -88,10 +91,20 @@ async function filters()
     });
 }
 
+
+//on click Filters
 async function handleFilters(e)
 {
 
-    var category = e.target.id.split("_")[1];
+    const category = e.target.id.split("_")[1];
+    
+    //We get current active
+    const active = document.getElementsByClassName("active")[0];
+    //We clear current active style
+    active.className = "category";
+    //We active the clicked element
+    e.target.className = "category active"
+
     //We get works
     const works = await _request("GET", "works");
 

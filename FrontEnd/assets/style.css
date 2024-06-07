@@ -30,6 +30,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	background-color: rgba(255, 254, 248, 1);
 }
 ol, ul {
 	list-style: none;
@@ -185,6 +186,7 @@ footer nav ul {
 	justify-content: flex-end;
 	margin: 2em
 }
+
 
 /* Categories */
 .categories
