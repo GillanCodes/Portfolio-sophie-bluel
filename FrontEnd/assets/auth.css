@@ -85,11 +85,13 @@
     color: rgba(61, 61, 61, 1);
 }
 
+/* login btn style navbar */
 #login-btn
 {
     font-weight: bold;
 }
 
+/* hide error by default and set text to red */
 #error
 {
     display: none;
