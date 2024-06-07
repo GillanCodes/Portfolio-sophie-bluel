@@ -9,6 +9,8 @@
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
+
+    <script src="./js/auth.js"></script>
 </head>
 <body>
     <header>
@@ -28,16 +30,20 @@
              <h2>Log In</h2>
 
              <form>
-                <label for="email"><b>E-Mail</b></label>
-                <input type="text" name="email" required>
-                
-                <label for="psw"><b>Mot de passe</b></label>
-                <input type="text" name="psw" required>
-
-                <button type="submit">Se connecter</button>
+                <div class="field">
+                    <label for="email"><b>E-Mail</b></label>
+                    <input type="text" name="email" required>
+                </div>
+                <div class="field">
+                    <label for="psw"><b>Mot de passe</b></label>
+                    <input type="text" name="psw" required>
+                </div>
+                <div class="field" id="submit-field">
+                    <button type="submit">Se connecter</button>
+                </div>
              </form>
 
-             <p id="forget-psw">Mot de passe oublié</p>
+             <a href="#" id="forget-psw">Mot de passe oublié</a>
         </section>
 
     </main>

@@ -1,0 +1,84 @@
+#auth
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#auth h2
+{
+    text-align: center;
+    margin: 100px;
+    font-size: 36px;
+}
+
+#auth form {
+    display: flex;
+    flex-direction: column;
+    width: 380px;
+}
+
+#auth form .field
+{
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+}
+
+#auth form .field#submit-field
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#auth form .field input
+{
+    width: 379px;
+    height: 51px;
+    border: none;
+    background-color: white;
+    box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+
+}
+
+#auth form .field label
+{
+    margin-bottom: 5px;
+    font-family: "Work Sans";
+    
+}
+
+#auth form .field button
+{
+    width: 179px;
+    height: 36px;
+
+    border-radius: 60px;
+    border: none;
+
+    background-color: rgba(29, 97, 84, 1);
+    color: white;
+    font-family: "Syne";
+    font-size: 14px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#auth #forget-psw
+{
+    text-decoration: underline;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 25px;
+
+    color: rgba(61, 61, 61, 1);
+}
+
+#auth #forget-psw:visited
+{
+    color: rgba(61, 61, 61, 1);
+}
