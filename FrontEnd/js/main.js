@@ -1,6 +1,22 @@
 // Function main
 async function main()
 {
+
+    var log_btn = document.getElementById('log-btn')
+
+    if (window.localStorage.getItem('Bearer'))
+        log_btn.innerText = "Logout"
+
+    log_btn.addEventListener('click', () => {
+        if (!window.localStorage.getItem('Bearer'))
+            window.location = "./auth.html";
+        else
+        {
+            window.localStorage.clear('Bearer');
+            log_btn.innerText = "Login";
+        }
+    });
+
     works();
     await filters();
     console.log(window.localStorage.getItem('Bearer'))
