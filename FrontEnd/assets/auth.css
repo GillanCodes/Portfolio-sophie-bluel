@@ -89,3 +89,9 @@
 {
     font-weight: bold;
 }
+
+#error
+{
+    display: none;
+    color: red;
+}

@@ -17,8 +17,16 @@ async function login(e)
 
     //We check if email or password are empty
     if (isEmpty(formData.get('email')) || isEmpty(formData.get('psw')))
-        //If yes we throw error
-        throw Error('missing_field');
+    {
+        //get element
+        var el = document.getElementById('error');
+        //display element
+        el.style.display = "block";
+        // add text in element
+        el.innerText = "Veuillez remplir tous les champs !"
+        //return to not try to log
+        return;
+    }
 
     //We structur data for api
     let data = {
@@ -27,6 +35,19 @@ async function login(e)
     }
     //We send request
     let res = await _request("POST", "users/login", data);
+
+    if (isEmpty(res.token))
+    {
+         //get element
+         var el = document.getElementById('error');
+         //display element
+         el.style.display = "block";
+         // add text in element
+         el.innerText = "E-mail ou Mot de passe incorrect !"
+         //return to not try to log
+         return;
+    }
+
     //We get token
     let token = res.token;
 
