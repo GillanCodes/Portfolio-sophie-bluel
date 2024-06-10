@@ -222,11 +222,12 @@ input[type="submit"]{
 	flex-grow: 1;
 }
 
+/* Edit button next to the title */
 .title .edit
 {
 	
 	position: absolute;
-	left: 700px;
+	left: 670px;
 	display: flex;
 	width: 100px;
 	justify-content: center;
