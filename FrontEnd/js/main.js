@@ -1,22 +1,7 @@
 // Function main
 async function main()
 {
-
-    var log_btn = document.getElementById('log-btn')
-
-    if (window.localStorage.getItem('Bearer'))
-        log_btn.innerText = "Logout"
-
-    log_btn.addEventListener('click', () => {
-        if (!window.localStorage.getItem('Bearer'))
-            window.location = "./auth.html";
-        else
-        {
-            window.localStorage.clear('Bearer');
-            log_btn.innerText = "Login";
-        }
-    });
-
+    checkAuth();
     works();
     await filters();
     console.log(window.localStorage.getItem('Bearer'))
@@ -171,6 +156,65 @@ async function handleFilters(e)
         if (work.category.id.toString() === category)
             gallery.appendChild(figure);
     })
+}
+
+
+function checkAuth()
+{
+    //We get the login Button
+    var log_btn = document.getElementById('log-btn')
+    //We get editMode el
+    var editMode = document.getElementById('edit-mode');
+    //Spacer El
+    var spacer = document.getElementById("spacer");
+    //Edit btn el
+    var edit = document.getElementById("edit");
+
+    //We add an event on the button
+    log_btn.addEventListener('click', async () => {
+        //we check if we got a bearer
+        if (!window.localStorage.getItem('Bearer'))
+            //if not, when clickng, go to log page
+            window.location = "./auth.html";
+        else
+        {
+            //else, we romoe the Bearer
+            window.localStorage.clear('Bearer');
+            //and we replace the button
+            log_btn.innerText = "Login";
+            checkAuth();
+        }
+    });
+
+    //We check if awe got a Bearer
+    if (window.localStorage.getItem('Bearer'))
+    {
+        //Login Button
+        //if yes we print Logout
+        log_btn.innerText = "Logout"
+
+        //Edit mode
+        editMode.style.display = "flex";
+        spacer.style.display = "block";
+        edit.style.display = "flex";
+        
+        return;
+    } 
+
+    if (!window.localStorage.getItem('Bearer'))
+        {
+            //Login Button
+            //if not we print Logout
+            log_btn.innerText = "login"
+    
+            //Edit mode
+            editMode.style.display = "none";
+            spacer.style.display = "none";
+            edit.style.display = "none";
+            
+            return;
+        } 
+
 }
 
 // We call the main function
