@@ -282,3 +282,118 @@ footer nav ul {
 	background-color: rgba(29, 97, 84, 1);
 	color: white;
 }
+
+
+/* Modal */
+
+ /* The Modal (background) */
+ .modal {
+	display: flex; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+	background-color: #fefefe;
+	margin: auto; /* 15% from the top and centered */
+	padding: 20px;
+	border: 1px solid #888;
+	width: 630px;
+	height: 688px;
+	border-radius: 10px;
+  }
+
+  .modal-head
+  {
+	height: 50px;
+  }
+  
+  /* The Close Button */
+  #close {
+	display: flex;
+	justify-content: flex-end;
+	font-size: 28px;
+	font-weight: bold;
+  }
+  
+  #close:hover,
+  #close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+  } 
+
+.modal-body .gallery .work
+{
+	display: flex;
+
+}
+
+.modal-body
+{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.modal-gallery
+{
+	width: 80%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.test
+{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.work
+{
+	height: 102px;
+	width: 76px;	
+	overflow: hidden;
+	position: relative;
+	margin: 10px;
+}
+
+.work img 
+{
+	height: 102px;
+	width: 76px;
+	overflow: hidden;
+
+}
+
+.work .icon
+{
+	display: flex;
+	position: absolute;
+	justify-content: center;
+	align-items: center;
+
+	height: 17px;
+	width: 17px;
+
+	background-color: rgba(0, 0, 0);
+	border-radius: 2px;
+	color: white;
+	font-size: 11px;
+	z-index: 2;
+	left: 55px;
+	top: 5px;
+
+}

@@ -217,5 +217,47 @@ function checkAuth()
 
 }
 
+async function modal_gallery()
+{
+
+    let modal_gallery = document.getElementById('modal-gallery');
+
+    const works = await _request("GET", "works");
+
+    modal_gallery.innerHTML = "";
+
+    works.forEach((work) => {
+
+        //We create an element div
+        const div = document.createElement('div')
+        //we give this element an id
+        div.id = work.id
+        div.className = "work";
+        //We create an element img
+        const img = document.createElement('img')
+        //we give this ele a src
+        img.src = work.imageUrl;
+        //and an alt
+        img.alt = work.title;
+        //we create an element caption
+        const span = document.createElement("span")
+        span.className = "icon"
+        span.innerHTML = "<i class=\"fa-solid fa-trash-can\"></i>"
+    
+        //we add the span to figure
+        div.appendChild(span);
+        //we add img to figure
+        div.appendChild(img)
+        
+    
+        //we child the final figure with data to gallery
+        modal_gallery.appendChild(div);
+    })
+
+
+}
+
+modal_gallery();
+
 // We call the main function
 main();
