@@ -10,6 +10,8 @@ async function main()
     for (let index = 0; index < btn.length; index++) {
         btn[index].addEventListener("click", handleFilters);
     }
+
+    modal();
 }
 
 // Utils: make a request
@@ -197,6 +199,10 @@ function checkAuth()
         editMode.style.display = "flex";
         spacer.style.display = "block";
         edit.style.display = "flex";
+
+        edit.addEventListener("click", () => {
+            document.getElementById("modal").style.display = "flex";
+        })
         
         return;
     } 
@@ -215,6 +221,16 @@ function checkAuth()
             return;
         } 
 
+}
+
+function modal()
+{
+    let close = document.getElementById('close');
+    close.addEventListener('click', () => {
+        document.getElementById("modal").style.display = "none";
+    });
+
+    modal_gallery();
 }
 
 async function modal_gallery()
@@ -242,7 +258,12 @@ async function modal_gallery()
         //we create an element caption
         const span = document.createElement("span")
         span.className = "icon"
-        span.innerHTML = "<i class=\"fa-solid fa-trash-can\"></i>"
+        span.innerHTML = `<i class=\"fa-solid fa-trash-can\" id=${work.id}></i>`
+        span.addEventListener("click", async (event) => {
+            
+            var deleted = await _request("DELETE" , `works/${event.target.id}`)
+            console.log(deleted);
+        })
     
         //we add the span to figure
         div.appendChild(span);
@@ -257,7 +278,7 @@ async function modal_gallery()
 
 }
 
-modal_gallery();
+
 
 // We call the main function
 main();
