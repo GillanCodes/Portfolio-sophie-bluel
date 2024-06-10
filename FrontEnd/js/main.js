@@ -260,9 +260,7 @@ async function modal_gallery()
         span.className = "icon"
         span.innerHTML = `<i class=\"fa-solid fa-trash-can\" id=${work.id}></i>`
         span.addEventListener("click", async (event) => {
-            
-            var deleted = await _request("DELETE" , `works/${event.target.id}`)
-            console.log(deleted);
+            deleteWork(event.target.id)
         })
     
         //we add the span to figure
@@ -274,8 +272,16 @@ async function modal_gallery()
         //we child the final figure with data to gallery
         modal_gallery.appendChild(div);
     })
+}
 
-
+async function deleteWork(id)
+{
+    //We send request to api
+    await _request("DELETE" , `works/${event.target.id}`);
+    //we delete gallery work
+    await document.getElementById(id).remove();
+    //we delete modal work
+    await document.getElementById(id).remove();
 }
 
 
