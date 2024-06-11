@@ -100,10 +100,30 @@
 			</div>
 		</div>
 		<div class="modal-body" id="form-body">
+			<h2>Ajout photo</h2>
 			<form id="add_pic">
-				<input type="file" id="image_field" name="image">
-				<input type="text" id="title" name="title">
-				<input type="number" id="category" name="category">
+				<div class="image_field">
+					<div id="fake-field">
+						<span class="icon"><i class="fa-regular fa-image"></i></span>
+						<p class="fake-btn"><i class="fa-solid fa-plus"></i> Ajouter photo</p>
+						<span class="info">jpg, png : 4mo max</span>
+					</div>
+					<input type="file" id="image_field" name="image">
+				</div>
+				<div class="field">
+					<label for="title">Title</label>
+					<input type="text" id="title" name="title">
+				</div>
+				<div class="field">
+					<label for="category">Categorie</label>
+					<select name="category" id="category">
+						<option value="1">Objets</option>
+						<option value="2">Appartements</option>
+						<option value="3">Hotels & restaurants</option>
+					</select>
+				</div>
+				
+				
 			</form>
 		</div>
 		<div class="modal-footer">

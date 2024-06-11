@@ -315,7 +315,7 @@ function modal_form()
 
         let formData = await new FormData(e.target);
 
-        var request = await fetch(`http://127.0.0.1:5678/api/works`, {
+        await fetch(`http://127.0.0.1:5678/api/works`, {
             method: "POST",
             mode: "cors",
             cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -326,7 +326,24 @@ function modal_form()
             redirect: "follow", // manual, *follow, error
             referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
             body: formData,
-        });
+        }).then((res) => {
+            console.log(res.status);
+        })
+    })
+
+    let img_input = document.getElementById("image_field")
+    img_input.addEventListener("change" , (e) => {
+        var blob = URL.createObjectURL(e.target.files[0])
+        
+        const parent = document.getElementById('fake-field')
+        const img = document.createElement('img');
+        img.className = "preview"
+        img.alt = "preview"
+        img.src = blob
+
+        parent.innerHTML = ""
+        parent.appendChild(img);
+        
     })
 
 }
