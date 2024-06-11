@@ -15,7 +15,7 @@ async function main()
 }
 
 // Utils: make a request
-async function _request(method, url)
+async function _request(method, url, data)
 {
     //If url or method is empty
     //Return error
@@ -40,7 +40,7 @@ async function _request(method, url)
         },
         redirect: "follow", // manual, *follow, error
         referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-        body: JSON.stringify(data),
+        body: data,
     });
     //Translate Resquest to json
     var data = await request.json();
@@ -299,29 +299,34 @@ async function modal_gallery()
 
 async function deleteWork(id)
 {
-    //We send request to api
-    await _request("DELETE" , `works/${event.target.id}`);
     //we delete gallery work
     await document.getElementById(id).remove();
     //we delete modal work
     await document.getElementById(id).remove();
+    //We send request to api
+    await _request("DELETE" , `works/${id}`);
 }
 
 function modal_form()
 {
-
     let form = document.getElementById('add_pic')
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         let formData = await new FormData(e.target);
-        let data = {
-            image: formData.get('image'),
-            title: formData.get('title'),
-            category : formData.get('category')
-        }
 
-        console.log(data);
+        var request = await fetch(`http://127.0.0.1:5678/api/works`, {
+            method: "POST",
+            mode: "cors",
+            cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: "same-origin", // include, *same-origin, omit
+            headers: {
+              "Authorization": `Bearer ${window.localStorage.getItem('Bearer')}` 
+            },
+            redirect: "follow", // manual, *follow, error
+            referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+            body: formData,
+        });
     })
 
 }
