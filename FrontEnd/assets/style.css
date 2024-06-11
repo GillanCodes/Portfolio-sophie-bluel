@@ -430,4 +430,14 @@ footer nav ul {
 	font-size: 14px;
 	text-align: center;
 
+	transition-duration: .1s;
+
+}
+
+.modal-footer button:hover
+{
+	background-color: rgba(14, 47, 40, 1);
+	cursor: pointer;
+
+	transition-duration: .1s;
 }
