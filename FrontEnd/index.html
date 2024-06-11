@@ -87,52 +87,32 @@
 	<div class="modal-content">
 		<div class="modal-head">
 			<span id="close">&times;</span>
+			<span id="back">&times;</span>
 		</div>
-		<div class="modal-body">
+		<div class="modal-body" id="gallery-body">
 			<h2 class="title">Gallerie Photo</h2>			
 			<div class="modal-gallery" id="modal-gallery">
-				<div class="work">
+				<!-- Template work -->
+				<!-- <div class="work">
 					<span class="icon"><i class="fa-solid fa-trash-can"></i></span>
 					<img src="./assets/images/appartement-paris-x.png" alt="" />	
-				</div>
-				<div class="work">
-					<span class="icon"><i class="fa-solid fa-trash-can"></i></span>
-					<img src="./assets/images/appartement-paris-x.png" alt="" />	
-				</div>
-				<div class="work">
-					<span class="icon"><i class="fa-solid fa-trash-can"></i></span>
-					<img src="./assets/images/appartement-paris-x.png" alt="" />	
-				</div>
-				<div class="work">
-					<span class="icon"><i class="fa-solid fa-trash-can"></i></span>
-					<img src="./assets/images/appartement-paris-x.png" alt="" />	
-				</div>
-				<div class="work">
-					<span class="icon"><i class="fa-solid fa-trash-can"></i></span>
-					<img src="./assets/images/appartement-paris-x.png" alt="" />	
-				</div>
-
-				
+				</div> -->				
 			</div>
+		</div>
+		<div class="modal-body" id="form-body">
+			<form id="add_pic">
+				<input type="file" id="image" name="image">
+				<input type="text" id="title" name="title">
+				<input type="number" id="category" name="category">
+			</form>
 		</div>
 		<div class="modal-footer">
 			<div class="spacer"></div>
-			<button>Ajouter une photo</button>
+			<button id="add-btn">Ajouter une photo</button>
+			<button id="formBtn" form="add_pic">Valider</button>
 		</div>
 	</div>
   
 </div>
-
-<!-- <div class="modal" id="modal">
-	<div class="modal-head">
-		<span id="close-btn"></span>
-	</div>
-	<section id="modal-edit">
-
-
-
-	</section>
-</div> -->
- 
 </body>
 </html>

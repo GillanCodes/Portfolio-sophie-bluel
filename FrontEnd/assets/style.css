@@ -341,8 +341,23 @@ footer nav ul {
 {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	/* justify-content: center; */
 	align-items: center;
+
+	height: 510px;
+
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+#form-body { display: none; }
+
+#back
+{
+	display: none;
+	justify-content: flex-start;
+	font-size: 28px;
+	font-weight: bold;
 }
 
 .modal-gallery
@@ -440,4 +455,9 @@ footer nav ul {
 	cursor: pointer;
 
 	transition-duration: .1s;
+}
+
+#formBtn
+{
+	display: none;
 }

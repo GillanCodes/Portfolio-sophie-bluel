@@ -229,8 +229,31 @@ function modal()
     close.addEventListener('click', () => {
         document.getElementById("modal").style.display = "none";
     });
+    
+    let btn = document.getElementById('add-btn');
+    btn.addEventListener('click', () => {
+        document.getElementById("back").style.display = "flex"
+        document.getElementById("add-btn").style.display = "none"
+
+        document.getElementById("gallery-body").style.display = "none"
+        document.getElementById("form-body").style.display = "flex";
+
+        document.getElementById("formBtn").style.display = "block";
+
+    });
+
+    let back_btn = document.getElementById('back');
+    back_btn.addEventListener('click', () => {
+        document.getElementById("back").style.display = "none"
+        document.getElementById("add-btn").style.display = "block"
+
+        document.getElementById("gallery-body").style.display = "flex"
+        document.getElementById("form-body").style.display = "none";
+        document.getElementById("formBtn").style.display = "none"
+    });
 
     modal_gallery();
+    modal_form();
 }
 
 async function modal_gallery()
@@ -284,7 +307,24 @@ async function deleteWork(id)
     await document.getElementById(id).remove();
 }
 
+function modal_form()
+{
 
+    let form = document.getElementById('add_pic')
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        let formData = await new FormData(e.target);
+        let data = {
+            image: formData.get('image'),
+            title: formData.get('title'),
+            category : formData.get('category')
+        }
+
+        console.log(data);
+    })
+
+}
 
 // We call the main function
 main();
