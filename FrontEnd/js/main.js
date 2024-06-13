@@ -40,9 +40,12 @@ async function _request(method, url, data)
         referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
         body: data,
     });
+
+    if (method === "DELETE")
+        return
+
     //Translate Resquest to json
     var data = await request.json();
-    
     //Return response
     return data;
 }
@@ -309,7 +312,11 @@ async function deleteWork(id)
 function modal_form()
 {
     //We get the form
-    let form = document.getElementById('add_pic')
+    let form = document.getElementById('add_pic');
+    //we get the parent to display the final message
+    let message = document.getElementById('form-info');
+    //we clear all his child
+    message.innerHTML = "";
     //We add an event to handle form submit
     form.addEventListener('submit', async (e) => {
         //We prevent the page from refreshing
@@ -339,6 +346,20 @@ function modal_form()
                 works();
                 //and modal page
                 modal_gallery();
+
+                let success = document.createElement('p')
+                success.className = "success";
+                success.innerText = "Photo ajouté avec succes !"
+                message.appendChild(success);
+
+                console.log(message)
+            } 
+            
+            if (res.status !== 201){
+                let error = document.createElement('p')
+                error.className = "error";
+                error.innerText = "Une erreur est survenue !"
+                message.appendChild(error);
             }
         })
     });

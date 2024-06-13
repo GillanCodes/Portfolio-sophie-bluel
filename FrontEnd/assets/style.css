@@ -571,3 +571,22 @@ footer nav ul {
 	font-size: 14px;
 	font-weight: 500;
 }
+
+#form-info
+{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	margin-top: 40px;
+}
+
+#form-info .success
+{
+	color: #1D6154;
+}
+
+#form-info .error
+{
+	color: red;
+}
