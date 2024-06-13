@@ -462,6 +462,11 @@ footer nav ul {
 	display: none;
 }
 
+#formBtn:disabled
+{
+	background-color: rgba(167, 167, 167, 1);
+}
+
 #form-body h2
 {
 	font-size: 26px;

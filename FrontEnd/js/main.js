@@ -33,7 +33,6 @@ async function _request(method, url, data)
         cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
         credentials: "same-origin", // include, *same-origin, omit
         headers: {
-          "Content-Type": "application/json",
           "Authorization": `Bearer ${window.localStorage.getItem('Bearer')}` 
           // 'Content-Type': 'application/x-www-form-urlencoded',
         },
@@ -309,48 +308,97 @@ async function deleteWork(id)
 
 function modal_form()
 {
+    //We get the form
     let form = document.getElementById('add_pic')
+    //We add an event to handle form submit
     form.addEventListener('submit', async (e) => {
+        //We prevent the page from refreshing
         e.preventDefault();
 
+        //we store data into a form data
         let formData = await new FormData(e.target);
 
+        //We send the api a request
         await fetch(`http://127.0.0.1:5678/api/works`, {
             method: "POST",
             mode: "cors",
-            cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-            credentials: "same-origin", // include, *same-origin, omit
+            cache: "no-cache",
+            credentials: "same-origin",
             headers: {
               "Authorization": `Bearer ${window.localStorage.getItem('Bearer')}` 
             },
-            redirect: "follow", // manual, *follow, error
-            referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+            redirect: "follow",
+            referrerPolicy: "no-referrer",
             body: formData,
         }).then((res) => {
-            console.log(res.status);
+            //IF the resquest is successfull
             if (res.status === 201)
             {
+                //we reload works
+                //from main page
                 works();
+                //and modal page
                 modal_gallery();
             }
         })
-    })
+    });
 
+    //We get the image field
     let img_input = document.getElementById("image_field")
+    //We add an event handler
     img_input.addEventListener("change" , (e) => {
+        checkEmpty();
+        //we create a temp file
         var blob = URL.createObjectURL(e.target.files[0])
-        
+
+        //we get fake field 
         const parent = document.getElementById('fake-field')
+        //we create an image
         const img = document.createElement('img');
         img.className = "preview"
         img.alt = "preview"
         img.src = blob
 
+        //we remove fake field
         parent.innerHTML = ""
+        //we put in the temp image as a preview
         parent.appendChild(img);
         
-    })
+    });
 
+    let title = document.getElementById("pic_title")
+    title.addEventListener('change', checkEmpty);
+
+    let category = document.getElementById("category")
+    category.addEventListener("change", checkEmpty);
+
+}
+
+function checkEmpty()
+{
+    let title = document.getElementById("pic_title")
+    let img = document.getElementById("image_field");
+    let category = document.getElementById("category");
+    let done_btn = document.getElementById('formBtn')
+
+    if (img.files[0] && !isEmpty(title.value) && !isEmpty(category.value))
+    {
+        done_btn.removeAttribute('disabled')
+    }
+    else
+    {
+        done_btn.setAttribute('disabled', true);
+    }
+}
+
+function isEmpty(arg)
+{
+    return (
+        arg === undefined ||
+        arg === null ||
+        (typeof arg === "object" && Object.keys(arg).length === 0) ||
+        (typeof arg === "string" && arg.trim().length === 0)
+    );
 }
 
 // We call the main function
