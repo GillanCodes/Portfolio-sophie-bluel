@@ -4,14 +4,13 @@ async function main()
     checkAuth();
     works();
     await filters();
-    console.log(window.localStorage.getItem('Bearer'))
+    modal();
 
     const btn = document.getElementsByClassName("category")
     for (let index = 0; index < btn.length; index++) {
         btn[index].addEventListener("click", handleFilters);
     }
 
-    modal();
 }
 
 // Utils: make a request
@@ -57,6 +56,7 @@ async function works()
 
     //We get the element gallery
     const gallery = document.getElementById("gallery");
+    gallery.innerHTML = "";
 
     //We loop throught works
     works.forEach((work) => {
@@ -328,6 +328,11 @@ function modal_form()
             body: formData,
         }).then((res) => {
             console.log(res.status);
+            if (res.status === 201)
+            {
+                works();
+                modal_gallery();
+            }
         })
     })
 
