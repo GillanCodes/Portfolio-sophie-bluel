@@ -325,43 +325,51 @@ function modal_form()
         //we store data into a form data
         let formData = await new FormData(e.target);
 
-        //We send the api a request
-        await fetch(`http://127.0.0.1:5678/api/works`, {
-            method: "POST",
-            mode: "cors",
-            cache: "no-cache",
-            credentials: "same-origin",
-            headers: {
-              "Authorization": `Bearer ${window.localStorage.getItem('Bearer')}` 
-            },
-            redirect: "follow",
-            referrerPolicy: "no-referrer",
-            body: formData,
-        }).then((res) => {
-            //IF the resquest is successfull
-            if (res.status === 201)
-            {
-                //we reload works
-                //from main page
-                works();
-                //and modal page
-                modal_gallery();
+        if (!checkEmpty())
+        {
+            //We send the api a request
+            await fetch(`http://127.0.0.1:5678/api/works`, {
+                method: "POST",
+                mode: "cors",
+                cache: "no-cache",
+                credentials: "same-origin",
+                headers: {
+                "Authorization": `Bearer ${window.localStorage.getItem('Bearer')}` 
+                },
+                redirect: "follow",
+                referrerPolicy: "no-referrer",
+                body: formData,
+            }).then((res) => {
+                //IF the resquest is successfull
+                if (res.status === 201)
+                {
+                    //we reload works
+                    //from main page
+                    works();
+                    //and modal page
+                    modal_gallery();
 
-                let success = document.createElement('p')
-                success.className = "success";
-                success.innerText = "Photo ajouté avec succes !"
-                message.appendChild(success);
+                    let success = document.createElement('p')
+                    success.className = "success";
+                    success.innerText = "Photo ajouté avec succes !"
+                    message.appendChild(success);
 
-                console.log(message)
-            } 
-            
-            if (res.status !== 201){
-                let error = document.createElement('p')
-                error.className = "error";
-                error.innerText = "Une erreur est survenue !"
-                message.appendChild(error);
-            }
-        })
+                    console.log(message)
+                } 
+                
+                if (res.status !== 201){
+                    let error = document.createElement('p')
+                    error.className = "error";
+                    error.innerText = "Une erreur est survenue !"
+                    message.appendChild(error);
+                }
+            })
+        } else {
+            let error = document.createElement('p')
+            error.className = "error";
+            error.innerText = "Tous les champs doivent etre remplie !"
+            message.appendChild(error);
+        }
     });
 
     //We get the image field
@@ -405,10 +413,12 @@ function checkEmpty()
     if (img.files[0] && !isEmpty(title.value) && !isEmpty(category.value))
     {
         done_btn.removeAttribute('disabled')
+        return false;
     }
     else
     {
         done_btn.setAttribute('disabled', true);
+        return true;
     }
 }
 
