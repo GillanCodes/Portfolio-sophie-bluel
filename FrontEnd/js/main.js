@@ -315,8 +315,7 @@ function modal_form()
     let form = document.getElementById('add_pic');
     //we get the parent to display the final message
     let message = document.getElementById('form-info');
-    //we clear all his child
-    message.innerHTML = "";
+    
     //We add an event to handle form submit
     form.addEventListener('submit', async (e) => {
         //We prevent the page from refreshing
@@ -343,18 +342,37 @@ function modal_form()
                 //IF the resquest is successfull
                 if (res.status === 201)
                 {
+
                     //we reload works
                     //from main page
                     works();
                     //and modal page
                     modal_gallery();
 
+                    //we clear all his child
+                    message.innerHTML = "";
+
                     let success = document.createElement('p')
                     success.className = "success";
                     success.innerText = "Photo ajouté avec succes !"
                     message.appendChild(success);
 
-                    console.log(message)
+                    //We reset form
+                    form.reset();
+                    //We display fake input
+                    document.getElementById('fake-input').style.display = "block";
+                    //remove old preview
+                    document.getElementById('fake-preview').remove();
+
+
+                    document.getElementById("back").style.display = "none"
+                    document.getElementById("add-btn").style.display = "block"
+
+                    document.getElementById("gallery-body").style.display = "flex"
+                    document.getElementById("form-body").style.display = "none";
+                    document.getElementById("formBtn").style.display = "none"
+
+
                 } 
                 
                 if (res.status !== 201){
@@ -385,11 +403,11 @@ function modal_form()
         //we create an image
         const img = document.createElement('img');
         img.className = "preview"
+        img.id = "fake-preview"
         img.alt = "preview"
         img.src = blob
 
-        //we remove fake field
-        parent.innerHTML = ""
+        document.getElementById('fake-input').style.display = "none"
         //we put in the temp image as a preview
         parent.appendChild(img);
         
